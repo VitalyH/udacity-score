@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.scorekeeper">
+    package="com.example.android.udacityscore">
 
     <application
         android:allowBackup="true"

@@ -111,4 +111,12 @@
         android:onClick="Reset"
         android:padding="8dp"
         android:text="Reset" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="Undo"
+        android:padding="8dp"
+        android:text="Undo" />
 </RelativeLayout>
