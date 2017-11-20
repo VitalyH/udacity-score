@@ -97,11 +97,31 @@ public class MainActivity extends AppCompatActivity {
     }
     // reset button
     public void Reset(View view) {
+        //reset score and hidden undo value
         displayForTeamA(scoreTeamA = 0);
         displayForTeamB(scoreTeamB = 0);
         undoActionB = 0;
         undoActionA = 0;
+
+        //reset Team A name
+        EditText team_a_input = (EditText) findViewById(R.id.team_a_input);
+        team_a_input.setVisibility(View.VISIBLE);
+        Button team_a_save = (Button) findViewById(R.id.team_a_save);
+        team_a_save.setVisibility(View.VISIBLE);
+        String str_a = "Team A";
+        TextView team_a_name = (TextView) findViewById(R.id.team_a_name);
+        team_a_name.setText( str_a);
+
+        //reset Team B name
+        EditText team_b_input = (EditText) findViewById(R.id.team_b_input);
+        team_b_input.setVisibility(View.VISIBLE);
+        Button team_b_save = (Button) findViewById(R.id.team_b_save);
+        team_b_save.setVisibility(View.VISIBLE);
+        String str_b = "Team B";
+        TextView team_b_name = (TextView) findViewById(R.id.team_b_name);
+        team_b_name.setText( str_b);
     }
+
     // undo button
     public void Undo(View view) {
         displayForTeamA(scoreTeamA = scoreTeamA - undoActionA);
@@ -110,11 +130,6 @@ public class MainActivity extends AppCompatActivity {
         undoActionB = 0;
     }
 
-    // hide the unneeded views
-    public void saveTeamA(View view) {
-        EditText team_a_input = (EditText) findViewById(R.id.team_a_input);
-        team_a_input.setVisibility(View.GONE);
-    }
 
     /**
      * Displays the given score for Team A.
