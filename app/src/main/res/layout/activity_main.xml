@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -15,16 +15,33 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            tools:context="com.example.android.courtcounter.MainActivity">
+            tools:context="com.example.android.udacityscore.MainActivity">
 
             <TextView
+                android:id="@+id/team_a_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="8dp"
                 android:text="Team A" />
 
-            <TextView
+            <EditText
+                android:id="@+id/team_a_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:hint="Team name"/>
+
+            <Button
+                android:id="@+id/team_a_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="saveTeamA"
+                android:padding="8dp"
+                android:text="Save" />
+
+             <TextView
                 android:id="@+id/team_a_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,6 +70,10 @@
                 android:padding="8dp"
                 android:text="Free Throw" />
 
+
+
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -63,11 +84,28 @@
             tools:context="com.example.android.courtcounter.MainActivity">
 
             <TextView
+                android:id="@+id/team_b_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:padding="8dp"
                 android:text="Team B" />
+
+            <EditText
+                android:id="@+id/team_b_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:hint="Team name" />
+
+            <Button
+                android:id="@+id/team_b_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="saveTeamB"
+                android:padding="8dp"
+                android:text="Save" />
 
             <TextView
                 android:id="@+id/team_b_score"
@@ -99,11 +137,13 @@
                 android:text="Free Throw" />
 
 
+
+
         </LinearLayout>
 
     </LinearLayout>
 
-    <Button
+        <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
