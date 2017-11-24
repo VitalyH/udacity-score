@@ -9,56 +9,107 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    //declare global variables
+    //global variables
     int scoreTeamA = 0;
     int scoreTeamB = 0;
     int undoActionA = 0;
     int undoActionB = 0;
 
+    //rotation state check and save
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        savedInstanceState.putInt("scoreA", scoreTeamA);
+        savedInstanceState.putInt("scoreB", scoreTeamB);
+        savedInstanceState.putInt("undoA", undoActionA);
+        savedInstanceState.putInt("undoB", undoActionB);
+        super.onSaveInstanceState(savedInstanceState);
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        displayForTeamA(scoreTeamA);
-        displayForTeamA(scoreTeamB);
 
-        // save the teams names
+        //restore score values, keeps undo values
+        if (savedInstanceState != null) {
+            scoreTeamA = savedInstanceState.getInt("scoreA");
+            scoreTeamB = savedInstanceState.getInt("scoreB");
+            undoActionA = savedInstanceState.getInt("undoA");
+            undoActionB = savedInstanceState.getInt("undoB");
+            //print scores after restoration
+            TextView scoreViewA = (TextView) findViewById(R.id.team_a_score);
+            scoreViewA.setText(String.valueOf(scoreTeamA));
+            TextView scoreViewB = (TextView) findViewById(R.id.team_b_score);
+            scoreViewB.setText(String.valueOf(scoreTeamB));
+
+            //keeps A Team input field and save button hidden
+            EditText team_a_input = (EditText) findViewById(R.id.team_a_input);
+            team_a_input.setVisibility(View.GONE);
+            Button team_a_save = (Button) findViewById(R.id.team_a_save);
+            team_a_save.setVisibility(View.GONE);
+
+            //keeps B Team input field and save button hidden
+            EditText team_b_input = (EditText) findViewById(R.id.team_b_input);
+            team_b_input.setVisibility(View.GONE);
+            Button team_b_save = (Button) findViewById(R.id.team_b_save);
+            team_b_save.setVisibility(View.GONE);
+        }
+
+
+        /**
+         * Saving the teams names.
+         */
+        // get the buttons ID's
         Button t1button = (Button) findViewById(R.id.team_a_save);
         Button t2button = (Button) findViewById(R.id.team_b_save);
 
+        // listener for Team A name
         t1button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // find the text view for team A
                 EditText inputText = (EditText) findViewById(R.id.team_a_input);
-                String str = inputText.getText().toString();
+                String strA = inputText.getText().toString();
                 TextView newText = (TextView) findViewById(R.id.team_a_name);
-                newText.setText( str);
+                newText.setText(strA);
+
                 //hide text view & button for Team A
                 EditText team_a_input = (EditText) findViewById(R.id.team_a_input);
                 team_a_input.setVisibility(View.GONE);
                 Button team_a_save = (Button) findViewById(R.id.team_a_save);
                 team_a_save.setVisibility(View.GONE);
+
             }
         });
 
+        // listener for Team B name
         t2button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //find the text view for team A
                 EditText inputText = (EditText) findViewById(R.id.team_b_input);
-                String str = inputText.getText().toString();
+                String strB = inputText.getText().toString();
                 TextView newText = (TextView) findViewById(R.id.team_b_name);
-                newText.setText( str);
+                newText.setText(strB);
+
                 //hide text view & button for Team B
                 EditText team_b_input = (EditText) findViewById(R.id.team_b_input);
                 team_b_input.setVisibility(View.GONE);
                 Button team_b_save = (Button) findViewById(R.id.team_b_save);
                 team_b_save.setVisibility(View.GONE);
+
             }
         });
     }
-    // buttons on click for the Team A
+
+
+    /**
+     * Buttons with scores for both teams.
+     */
+    // for the Team A
     public void plusThreeA(View view) {
         displayForTeamA(scoreTeamA = scoreTeamA + 3);
         undoActionA = 3;
@@ -77,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         undoActionB = 0;
     }
 
-    // buttons on click for the Team B
+    // for the Team B
     public void plusThreeB(View view) {
         displayForTeamB(scoreTeamB = scoreTeamB + 3);
         undoActionB = 3;
@@ -95,9 +146,12 @@ public class MainActivity extends AppCompatActivity {
         undoActionB = 1;
         undoActionA = 0;
     }
-    // reset button
+
+    /**
+     * Reset button.
+     */
     public void Reset(View view) {
-        //reset score and hidden undo value
+        //reset score and hidden "undo" values
         displayForTeamA(scoreTeamA = 0);
         displayForTeamB(scoreTeamB = 0);
         undoActionB = 0;
@@ -110,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         team_a_save.setVisibility(View.VISIBLE);
         String str_a = "Team A";
         TextView team_a_name = (TextView) findViewById(R.id.team_a_name);
-        team_a_name.setText( str_a);
+        team_a_name.setText(str_a);
 
         //reset Team B name
         EditText team_b_input = (EditText) findViewById(R.id.team_b_input);
@@ -119,17 +173,18 @@ public class MainActivity extends AppCompatActivity {
         team_b_save.setVisibility(View.VISIBLE);
         String str_b = "Team B";
         TextView team_b_name = (TextView) findViewById(R.id.team_b_name);
-        team_b_name.setText( str_b);
+        team_b_name.setText(str_b);
     }
 
-    // undo button
+    /**
+     * Basic "Undo" button.
+     */
     public void Undo(View view) {
         displayForTeamA(scoreTeamA = scoreTeamA - undoActionA);
         undoActionA = 0;
         displayForTeamB(scoreTeamB = scoreTeamB - undoActionB);
         undoActionB = 0;
     }
-
 
     /**
      * Displays the given score for Team A.
@@ -138,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
         TextView scoreView = (TextView) findViewById(R.id.team_a_score);
         scoreView.setText(String.valueOf(scoreTeamA));
     }
+
     /**
      * Displays the given score for Team B.
      */
