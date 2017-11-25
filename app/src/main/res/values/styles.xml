@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="teamsNames">
+        <item name="android:textColor">#5e7974</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">Droid serif</item>
+    </style>
+
+    <style name="scoreValues">
+        <item name="android:textColor">#5e7974</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">Droid serif</item>
+    </style>
+
+    <style name="resetButton">
+        <item name="android:textColor">#090a0a</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
 </resources>

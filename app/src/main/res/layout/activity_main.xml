@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bckgr"
+    android:paddingBottom="4dp">
+
+    <!--Teams names bar-->
 
     <LinearLayout
+        android:id="@+id/teamsNames"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!--Team A Name -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/team_a_name"
+                style="@style/teamsNames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:freezesText="true"
+                android:text="@string/team_a_name" />
+        </LinearLayout>
+
+        <!--Team B Name -->
 
         <LinearLayout
             android:layout_width="0dp"
@@ -18,65 +47,87 @@
             tools:context="com.example.android.udacityscore.MainActivity">
 
             <TextView
-                android:freezesText="true"
-                android:id="@+id/team_a_name"
+                android:id="@+id/team_b_name"
+                style="@style/teamsNames"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="8dp"
-                android:text="Team A" />
+                android:freezesText="true"
+                android:text="@string/team_b_name" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Teams names and scores fields -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/teamsNames"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+
+        <!-- Team A layout -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            tools:context="com.example.android.udacityscore.MainActivity">
 
             <EditText
                 android:id="@+id/team_a_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="8dp"
-                android:hint="Team name"/>
+                android:hint="@string/hintInInput"
+                android:padding="8dp" />
 
             <Button
                 android:id="@+id/team_a_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="saveTeamA"
-                android:padding="8dp"
-                android:text="Save" />
+                android:layout_margin="4dp"
+                android:background="@drawable/score_button"
+                android:text="@string/saveButton" />
 
-             <TextView
+            <TextView
                 android:id="@+id/team_a_score"
+                style="@style/scoreValues"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="8dp"
-                android:text="0" />
+                android:padding="16dp"
+                android:text="@string/score" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/score_button"
                 android:onClick="plusThreeA"
-                android:padding="8dp"
-                android:text="+3 points" />
+                android:text="@string/plusThree" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/score_button"
                 android:onClick="plusTwoA"
-                android:padding="8dp"
-                android:text="+2 points" />
+                android:text="@string/plusTwo" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/score_button"
                 android:onClick="FreeDrawA"
-                android:padding="8dp"
-                android:text="Free Throw" />
-
-
-
+                android:text="@string/plusOne" />
 
 
         </LinearLayout>
 
+        <!-- Team B layout -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -84,81 +135,77 @@
             android:orientation="vertical"
             tools:context="com.example.android.courtcounter.MainActivity">
 
-            <TextView
-                android:freezesText="true"
-                android:id="@+id/team_b_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="8dp"
-                android:text="Team B" />
-
             <EditText
                 android:id="@+id/team_b_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="8dp"
-                android:hint="Team name" />
+                android:hint="@string/hintInInput"
+                android:padding="8dp" />
 
             <Button
                 android:id="@+id/team_b_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="saveTeamB"
-                android:padding="8dp"
-                android:text="Save" />
+                android:layout_margin="4dp"
+                android:background="@drawable/score_button"
+                android:text="@string/saveButton" />
 
             <TextView
                 android:id="@+id/team_b_score"
+                style="@style/scoreValues"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="8dp"
-                android:text="0" />
+                android:padding="16dp"
+                android:text="@string/score" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/score_button"
                 android:onClick="plusThreeB"
-                android:padding="8dp"
-                android:text="+3 points" />
+                android:text="@string/plusThree" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/score_button"
                 android:onClick="plusTwoB"
-                android:padding="8dp"
-                android:text="+2 points" />
+                android:text="@string/plusTwo" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@drawable/score_button"
                 android:onClick="FreeDrawB"
-                android:padding="8dp"
-                android:text="Free Throw" />
-
-
+                android:text="@string/plusOne" />
 
 
         </LinearLayout>
 
     </LinearLayout>
-
-        <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="Reset"
-        android:padding="8dp"
-        android:text="Reset" />
-
+    <!-- Reset and Undo buttons -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/score_button"
         android:onClick="Undo"
-        android:padding="8dp"
-        android:text="Undo" />
+        android:text="@string/undoButton" />
+
+    <Button
+        style="@style/resetButton"
+        android:layout_width="55dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/score_button"
+        android:onClick="Reset"
+        android:text="@string/resetButton" />
 </RelativeLayout>
+
